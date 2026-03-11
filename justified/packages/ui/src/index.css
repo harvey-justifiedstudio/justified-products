@@ -1,0 +1,375 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BRAND TOKENS — Tailwind v4 @theme
+   All design tokens live here. Change these to match your brand.
+   Order: Colours → Typography → Spacing & shape → Shadows
+   ───────────────────────────────────────────────────────────────────────────── */
+/* Palette colours live in :root below (single source); @theme inline wires them for Tailwind. */
+
+@theme {
+  /* Semantic colour shortcuts (point at :root palette) */
+  --color-success: var(--color-success-500);
+  --color-warning: var(--color-warning-500);
+  --color-danger: var(--color-danger-500);
+  --color-info: var(--color-info-500);
+
+  /* ── TYPOGRAPHY ── */
+  /* Base text cut for small/body sizes */
+  --font-sans-text: "Helvetica Now Text", ui-sans-serif, system-ui, sans-serif;
+  /* Display cut for larger headings / hero text */
+  --font-sans-display: "Helvetica Now Display", ui-sans-serif, system-ui, sans-serif;
+  /* Tailwind's font-sans primitive → text cut by default */
+  --font-sans: var(--font-sans-text);
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* ── Spacing scale (extend / override as needed) ── */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-88: 22rem;
+  --spacing-128: 32rem;
+
+  /* ── Border radius ── */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ── Shadows (primitives) ── */
+  --shadow-sm: 0 1px 2px 0 oklch(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px oklch(0 0 0 / 0.1), 0 2px 4px -2px oklch(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px oklch(0 0 0 / 0.1), 0 4px 6px -4px oklch(0 0 0 / 0.1);
+  --shadow-brand: 0 4px 24px -4px oklch(57% 0.22 260 / 0.35);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   TAILWIND v4 THEME MAPPING (@theme inline)
+   Connects :root/.dark semantic vars to Tailwind's theme. No conflict: @theme
+   above defines raw tokens (e.g. --color-brand-500); :root sets semantics
+   (--primary, --background); this block wires them so bg-primary etc. follow
+   whatever --primary is in the current context.
+   ───────────────────────────────────────────────────────────────────────────── */
+@theme inline {
+  /* Palette (single source in :root → inline so utilities + var() both work) */
+  --color-brand-50: var(--color-brand-50);
+  --color-brand-100: var(--color-brand-100);
+  --color-brand-200: var(--color-brand-200);
+  --color-brand-300: var(--color-brand-300);
+  --color-brand-400: var(--color-brand-400);
+  --color-brand-500: var(--color-brand-500);
+  --color-brand-600: var(--color-brand-600);
+  --color-brand-700: var(--color-brand-700);
+  --color-brand-800: var(--color-brand-800);
+  --color-brand-900: var(--color-brand-900);
+  --color-brand-950: var(--color-brand-950);
+  --color-neutral-50: var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+  --color-neutral-950: var(--color-neutral-950);
+  --color-info-50: var(--color-info-50);
+  --color-info-100: var(--color-info-100);
+  --color-info-200: var(--color-info-200);
+  --color-info-300: var(--color-info-300);
+  --color-info-400: var(--color-info-400);
+  --color-info-500: var(--color-info-500);
+  --color-info-600: var(--color-info-600);
+  --color-info-700: var(--color-info-700);
+  --color-info-800: var(--color-info-800);
+  --color-info-900: var(--color-info-900);
+  --color-info-950: var(--color-info-950);
+  --color-success-50: var(--color-success-50);
+  --color-success-100: var(--color-success-100);
+  --color-success-200: var(--color-success-200);
+  --color-success-300: var(--color-success-300);
+  --color-success-400: var(--color-success-400);
+  --color-success-500: var(--color-success-500);
+  --color-success-600: var(--color-success-600);
+  --color-success-700: var(--color-success-700);
+  --color-success-800: var(--color-success-800);
+  --color-success-900: var(--color-success-900);
+  --color-success-950: var(--color-success-950);
+  --color-warning-50: var(--color-warning-50);
+  --color-warning-100: var(--color-warning-100);
+  --color-warning-200: var(--color-warning-200);
+  --color-warning-300: var(--color-warning-300);
+  --color-warning-400: var(--color-warning-400);
+  --color-warning-500: var(--color-warning-500);
+  --color-warning-600: var(--color-warning-600);
+  --color-warning-700: var(--color-warning-700);
+  --color-warning-800: var(--color-warning-800);
+  --color-warning-900: var(--color-warning-900);
+  --color-warning-950: var(--color-warning-950);
+  --color-danger-50: var(--color-danger-50);
+  --color-danger-100: var(--color-danger-100);
+  --color-danger-200: var(--color-danger-200);
+  --color-danger-300: var(--color-danger-300);
+  --color-danger-400: var(--color-danger-400);
+  --color-danger-500: var(--color-danger-500);
+  --color-danger-600: var(--color-danger-600);
+  --color-danger-700: var(--color-danger-700);
+  --color-danger-800: var(--color-danger-800);
+  --color-danger-900: var(--color-danger-900);
+  --color-danger-950: var(--color-danger-950);
+  --color-accent-50: var(--color-accent-50);
+  --color-accent-100: var(--color-accent-100);
+  --color-accent-200: var(--color-accent-200);
+  --color-accent-300: var(--color-accent-300);
+  --color-accent-400: var(--color-accent-400);
+  --color-accent-500: var(--color-accent-500);
+  --color-accent-600: var(--color-accent-600);
+  --color-accent-700: var(--color-accent-700);
+  --color-accent-800: var(--color-accent-800);
+  --color-accent-900: var(--color-accent-900);
+  --color-accent-950: var(--color-accent-950);
+  /* Semantic / component tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   PALETTE COLOURS — single source of truth on :root
+   Used by: inline styles (var()), semantic :root below, and @theme inline (Tailwind).
+   ───────────────────────────────────────────────────────────────────────────── */
+:root {
+  /* Brand */
+  --color-brand-50: oklch(98% 0 0);
+  --color-brand-100: oklch(96% 0 0);
+  --color-brand-200: oklch(91% 0 0);
+  --color-brand-300: oklch(84% 0 0);
+  --color-brand-400: oklch(72% 0 0);
+  --color-brand-500: oklch(60% 0 0);
+  --color-brand-600: oklch(48% 0 0);
+  --color-brand-700: oklch(38% 0 0);
+  --color-brand-800: oklch(27% 0 0);
+  --color-brand-900: oklch(18% 0 0);
+  --color-brand-950: oklch(10% 0 0);
+  /* Neutral */
+  --color-neutral-50: #f9fafb;
+  --color-neutral-100: #f3f4f6;
+  --color-neutral-200: #e5e7eb;
+  --color-neutral-300: #d1d5db;
+  --color-neutral-400: #9ca3af;
+  --color-neutral-500: #6b7280;
+  --color-neutral-600: #4b5563;
+  --color-neutral-700: #374151;
+  --color-neutral-800: #1f2937;
+  --color-neutral-900: #111827;
+  --color-neutral-950: #020617;
+  /* Info */
+  --color-info-50: #eff6ff;
+  --color-info-100: #dbeafe;
+  --color-info-200: #bfdbfe;
+  --color-info-300: #93c5fd;
+  --color-info-400: #60a5fa;
+  --color-info-500: #3b82f6;
+  --color-info-600: #2563eb;
+  --color-info-700: #1d4ed8;
+  --color-info-800: #1e40af;
+  --color-info-900: #1e3a8a;
+  --color-info-950: #020617;
+  /* Success */
+  --color-success-50: #f0fdf4;
+  --color-success-100: #dcfce7;
+  --color-success-200: #bbf7d0;
+  --color-success-300: #86efac;
+  --color-success-400: #4ade80;
+  --color-success-500: #22c55e;
+  --color-success-600: #16a34a;
+  --color-success-700: #15803d;
+  --color-success-800: #166534;
+  --color-success-900: #14532d;
+  --color-success-950: #052e16;
+  /* Warning */
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-200: #fde68a;
+  --color-warning-300: #fcd34d;
+  --color-warning-400: #fbbf24;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+  --color-warning-700: #b45309;
+  --color-warning-800: #92400e;
+  --color-warning-900: #78350f;
+  --color-warning-950: #451a03;
+  /* Danger */
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-200: #fecaca;
+  --color-danger-300: #fca5a5;
+  --color-danger-400: #f87171;
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+  --color-danger-800: #991b1b;
+  --color-danger-900: #7f1d1d;
+  --color-danger-950: #450a0a;
+  /* Accent */
+  --color-accent-50: oklch(0.97 0.02 262);
+  --color-accent-100: oklch(0.93 0.05 262);
+  --color-accent-200: oklch(0.86 0.1 262);
+  --color-accent-300: oklch(0.76 0.15 262);
+  --color-accent-400: oklch(0.66 0.2 262);
+  --color-accent-500: oklch(0.5901 0.2235 261.87);
+  --color-accent-600: oklch(0.5 0.22 262);
+  --color-accent-700: oklch(0.42 0.2 262);
+  --color-accent-800: oklch(0.33 0.16 262);
+  --color-accent-900: oklch(0.25 0.12 262);
+  --color-accent-950: oklch(0.16 0.08 262);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SEMANTIC CSS VARIABLES — Light mode (all reference palette above)
+   ───────────────────────────────────────────────────────────────────────────── */
+:root {
+  --background: var(--color-brand-50);
+  --foreground: var(--color-brand-900);
+  --card: var(--color-brand-50);
+  --card-foreground: var(--color-brand-900);
+  --popover: var(--color-brand-50);
+  --popover-foreground: var(--color-brand-900);
+  --primary: var(--color-brand-700);
+  --primary-foreground: var(--color-brand-50);
+  --secondary: var(--color-brand-100);
+  --secondary-foreground: var(--color-brand-900);
+  --secondary-hover: var(--color-brand-200);
+  --muted: var(--color-brand-100);
+  --muted-foreground: var(--color-brand-500);
+  --accent: var(--color-accent-50);
+  --accent-foreground: var(--color-brand-900);
+  --destructive: var(--color-danger-500);
+  --destructive-foreground: var(--color-danger-50);
+  --border: var(--color-brand-200);
+  --input: var(--color-brand-200);
+  --ring: var(--color-brand-400);
+  --sidebar: var(--color-brand-50);
+  --sidebar-foreground: var(--color-brand-900);
+  --sidebar-primary: var(--color-brand-900);
+  --sidebar-primary-foreground: var(--color-brand-50);
+  --sidebar-accent: var(--color-brand-100);
+  --sidebar-accent-foreground: var(--color-brand-900);
+  --sidebar-border: var(--color-brand-200);
+  --sidebar-ring: var(--color-brand-300);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SEMANTIC CSS VARIABLES — Dark mode (all reference palette above)
+   ───────────────────────────────────────────────────────────────────────────── */
+.dark {
+  --background: var(--color-neutral-950);
+  --foreground: var(--color-neutral-50);
+  --card: var(--color-neutral-900);
+  --card-foreground: var(--color-neutral-50);
+  --popover: var(--color-neutral-900);
+  --popover-foreground: var(--color-neutral-50);
+  --primary: var(--color-neutral-50);
+  --primary-foreground: var(--color-neutral-950);
+  --secondary: var(--color-neutral-800);
+  --secondary-foreground: var(--color-neutral-50);
+  --secondary-hover: var(--color-neutral-700);
+  --muted: var(--color-neutral-800);
+  --muted-foreground: var(--color-neutral-400);
+  --accent: var(--color-neutral-800);
+  --accent-foreground: var(--color-neutral-50);
+  --destructive: var(--color-danger-500);
+  --destructive-foreground: var(--color-danger-50);
+  --border: var(--color-neutral-800);
+  --input: var(--color-neutral-800);
+  --ring: var(--color-neutral-600);
+  --sidebar: var(--color-neutral-900);
+  --sidebar-foreground: var(--color-neutral-50);
+  --sidebar-primary: var(--color-neutral-50);
+  --sidebar-primary-foreground: var(--color-neutral-900);
+  --sidebar-accent: var(--color-neutral-800);
+  --sidebar-accent-foreground: var(--color-neutral-50);
+  --sidebar-border: var(--color-neutral-800);
+  --sidebar-ring: var(--color-neutral-600);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   TOASTER DARK LAYER (Notion-style: toasts always dark in both app themes)
+   Scopes dark-mode tokens to the Sonner container so we don't override per-toast.
+   ───────────────────────────────────────────────────────────────────────────── */
+[data-sonner-toaster] {
+  color-scheme: dark;
+}
+
+/* Semantic icon colour only (style the SVG/contents, not the wrapper, to avoid breaking layout) */
+[data-sonner-toaster] [data-sonner-toast][data-type="success"] [data-icon] > *,
+[data-sonner-toaster] [data-sonner-toast][data-type="success"] [data-icon] svg {
+  color: var(--color-success-500);
+  fill: var(--color-success-500);
+}
+[data-sonner-toaster] [data-sonner-toast][data-type="error"] [data-icon] > *,
+[data-sonner-toaster] [data-sonner-toast][data-type="error"] [data-icon] svg {
+  color: var(--color-danger-500);
+  fill: var(--color-danger-500);
+}
+[data-sonner-toaster] [data-sonner-toast][data-type="warning"] [data-icon] > *,
+[data-sonner-toaster] [data-sonner-toast][data-type="warning"] [data-icon] svg {
+  color: var(--color-warning-500);
+  fill: var(--color-warning-500);
+}
+[data-sonner-toaster] [data-sonner-toast][data-type="info"] [data-icon] > *,
+[data-sonner-toaster] [data-sonner-toast][data-type="info"] [data-icon] svg {
+  color: var(--color-info-500);
+  fill: var(--color-info-500);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BASE STYLES
+   ───────────────────────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   TYPOGRAPHY UTILITIES
+   ───────────────────────────────────────────────────────────────────────────── */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-sans-display);
+  }
+}

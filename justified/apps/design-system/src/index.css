@@ -1,0 +1,4 @@
+@import "@justified/ui/styles.css";
+
+/* Tell Tailwind to scan the UI package source files for class names */
+@source "../../../packages/ui/src/**/*.{ts,tsx}";

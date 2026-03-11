@@ -1,0 +1,19 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pitch-maker",
+      "runtimeExecutable": "/Users/harveyrobinson/Library/pnpm/pnpm",
+      "runtimeArgs": ["dev"],
+      "port": 5175,
+      "cwd": "/Users/harveyrobinson/Documents/Code Tests/justified/apps/pitch-maker"
+    },
+    {
+      "name": "design-system",
+      "runtimeExecutable": "/Users/harveyrobinson/Library/pnpm/pnpm",
+      "runtimeArgs": ["dev"],
+      "port": 5176,
+      "cwd": "/Users/harveyrobinson/Documents/Code Tests/justified/apps/design-system"
+    }
+  ]
+}
