@@ -40,7 +40,7 @@ const navItems: { foundations: NavItem[]; components: NavItem[] } = {
 };
 
 const navButtonClass =
-  "h-7 text-xs text-sidebar-foreground/40 hover:bg-transparent hover:text-sidebar-foreground data-[active=true]:bg-transparent data-[active=true]:text-sidebar-foreground data-[active=true]:font-normal";
+  "h-7 text-xs text-sidebar-foreground/40 hover:bg-transparent hover:text-sidebar-foreground active:bg-transparent active:text-sidebar-foreground data-[active=true]:bg-transparent data-[active=true]:text-sidebar-foreground data-[active=true]:font-normal";
 
 function AppSidebar() {
   const [activeHref, setActiveHref] = useState(() => window.location.hash || "#palette");
@@ -101,12 +101,10 @@ function AppSidebar() {
 
 const COLOR_PALETTES = [
   { id: "brand", label: "Brand", prefix: "--color-brand" },
-  { id: "neutral", label: "Neutral", prefix: "--color-neutral" },
   { id: "info", label: "Info", prefix: "--color-info" },
   { id: "success", label: "Success", prefix: "--color-success" },
   { id: "warning", label: "Warning", prefix: "--color-warning" },
   { id: "danger", label: "Danger", prefix: "--color-danger" },
-  { id: "accent", label: "Accent", prefix: "--color-accent" },
 ] as const;
 
 const SHADES = ["50", "100", "200", "300", "400", "500", "600", "700", "800", "900", "950"] as const;
@@ -186,8 +184,7 @@ export default function App() {
                                   />
                                 </TooltipTrigger>
                                 <TooltipContent side="bottom">
-                                  <p className="font-medium text-xs">{semanticLabel}</p>
-                                  <p className="font-mono text-[11px] text-muted-foreground">{varName}</p>
+                                  <p className="font-mono text-[11px]">{varName}</p>
                                 </TooltipContent>
                               </Tooltip>
                             );

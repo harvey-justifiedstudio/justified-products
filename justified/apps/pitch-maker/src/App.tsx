@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import {
+  AppSidebar,
+  sidebarNavButtonClass,
   Button,
   Badge,
   Card,
@@ -9,13 +11,12 @@ import {
   CardDescription,
   Separator,
   SidebarProvider,
-  Sidebar,
   SidebarContent,
-  SidebarHeader,
+  SidebarGroup,
+  SidebarGroupContent,
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarFooter,
   SidebarInset,
   Tooltip,
   TooltipContent,
@@ -331,36 +332,37 @@ export default function App() {
         <div className="flex h-screen w-screen bg-background overflow-hidden">
 
           {/* Slide panel */}
-          <Sidebar className="border-r border-border w-52" collapsible="none">
-            <SidebarHeader className="px-4 py-4 border-b border-border">
-              <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">Pitch Maker</p>
-              <p className="text-sm font-medium text-foreground truncate">Justified Studio · Seed</p>
-            </SidebarHeader>
-
-            <SidebarContent className="py-2">
-              <SidebarMenu>
-                {SLIDES.map((name, i) => (
-                  <SidebarMenuItem key={name}>
-                    <SidebarMenuButton
-                      onClick={() => setActive(i)}
-                      isActive={active === i}
-                      className="gap-3"
-                    >
-                      <span className="w-5 text-right text-xs text-muted-foreground shrink-0">{i + 1}</span>
-                      <span className="text-sm">{name}</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
-              </SidebarMenu>
-            </SidebarContent>
-
-            <SidebarFooter className="border-t border-border p-3">
+          <AppSidebar
+            collapsible="none"
+            appName="Pitch Maker"
+            footer={
               <Button variant="outline" size="sm" className="w-full gap-2">
                 <Plus className="w-3 h-3" />
                 Add slide
               </Button>
-            </SidebarFooter>
-          </Sidebar>
+            }
+          >
+            <SidebarContent>
+              <SidebarGroup className="px-6 py-0">
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {SLIDES.map((name, i) => (
+                      <SidebarMenuItem key={name}>
+                        <SidebarMenuButton
+                          onClick={() => setActive(i)}
+                          isActive={active === i}
+                          className={`${sidebarNavButtonClass} gap-3`}
+                        >
+                          <span className="w-5 text-right shrink-0">{i + 1}</span>
+                          <span>{name}</span>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            </SidebarContent>
+          </AppSidebar>
 
           {/* Main area */}
           <SidebarInset className="flex flex-col flex-1 min-w-0">

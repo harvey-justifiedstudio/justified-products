@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "proposal-generator",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--dir", "justified/apps/proposal-generator", "dev"],
+      "port": 5173
+    },
+    {
+      "name": "pitch-maker",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--dir", "justified/apps/pitch-maker", "dev"],
+      "port": 5176
+    },
+    {
+      "name": "design-system",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--dir", "justified/apps/design-system", "dev"],
+      "port": 5177
+    }
+  ]
+}

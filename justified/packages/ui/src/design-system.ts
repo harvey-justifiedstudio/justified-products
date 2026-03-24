@@ -10,6 +10,15 @@
 // Utils
 export { cn } from "./lib/utils";
 
+// App shell
+export {
+  AppSidebar,
+  SidebarUserFooter,
+  sidebarLogoClass,
+  sidebarNavButtonClass,
+  sidebarAvatarClass,
+} from "./components/ui/app-sidebar";
+
 // UI components
 export { Button, buttonVariants } from "./components/ui/button";
 export { Input } from "./components/ui/input";

@@ -3,6 +3,9 @@ import { toast } from "sonner";
 import { Agentation } from "agentation";
 import { ArrowRight, Check, Download, Loader2, Mail, Plus, Send, Settings, Trash2, X } from "lucide-react";
 import {
+  AppSidebar,
+  SidebarUserFooter,
+  sidebarNavButtonClass,
   Button,
   Badge,
   Input,
@@ -10,18 +13,14 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-  Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarHeader,
   SidebarInset,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarProvider,
-  SidebarRail,
   SidebarTrigger,
 } from "@justified/ui";
 
@@ -42,29 +41,21 @@ const navItems: { foundations: NavItem[]; components: NavItem[] } = {
   ],
 };
 
-const navButtonClass =
-  "h-7 text-xs text-sidebar-foreground/40 hover:bg-transparent hover:text-sidebar-foreground data-[active=true]:bg-transparent data-[active=true]:text-sidebar-foreground data-[active=true]:font-normal";
-
-function AppSidebar() {
+function DesignSystemSidebar() {
   const [activeHref, setActiveHref] = useState(() => window.location.hash || "#palette");
 
   return (
-    <Sidebar collapsible="icon">
-      <SidebarHeader>
-        <div className="flex items-center gap-2 px-6 py-6">
-          <div className="flex size-8 shrink-0 items-center justify-center rounded bg-sidebar-foreground text-[11px] font-semibold tracking-tight text-sidebar select-none">
-            JS
-          </div>
-        </div>
-      </SidebarHeader>
-
+    <AppSidebar
+      collapsible="icon"
+      footer={<SidebarUserFooter name="Tailwind v4 · shadcn/ui" initials="BD" />}
+    >
       <SidebarContent>
         <SidebarGroup className="px-6 py-0">
           <SidebarGroupContent>
             <SidebarMenu className="gap-0">
               {navItems.foundations.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton asChild tooltip={item.label} isActive={activeHref === item.href} className={navButtonClass}>
+                  <SidebarMenuButton asChild tooltip={item.label} isActive={activeHref === item.href} className={sidebarNavButtonClass}>
                     <a href={item.href} onClick={() => setActiveHref(item.href)}>
                       <span>{item.label}</span>
                     </a>
@@ -76,7 +67,7 @@ function AppSidebar() {
 
               {navItems.components.map((item) => (
                 <SidebarMenuItem key={item.href}>
-                  <SidebarMenuButton asChild tooltip={item.label} isActive={activeHref === item.href} className={navButtonClass}>
+                  <SidebarMenuButton asChild tooltip={item.label} isActive={activeHref === item.href} className={sidebarNavButtonClass}>
                     <a href={item.href} onClick={() => setActiveHref(item.href)}>
                       <span>{item.label}</span>
                     </a>
@@ -87,18 +78,7 @@ function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-
-      <SidebarFooter>
-        <div className="flex items-center gap-2 px-6 py-5">
-          <div className="flex size-6 shrink-0 items-center justify-center rounded-full bg-sidebar-foreground text-[9px] font-semibold text-sidebar select-none group-data-[collapsible=icon]:mx-auto">
-            BD
-          </div>
-          <span className="text-xs text-sidebar-foreground/40 group-data-[collapsible=icon]:hidden">Tailwind v4 · shadcn/ui</span>
-        </div>
-      </SidebarFooter>
-
-      <SidebarRail />
-    </Sidebar>
+    </AppSidebar>
   );
 }
 
@@ -131,7 +111,7 @@ export default function App() {
   return (
     <div className={dark ? "dark" : ""}>
       <SidebarProvider>
-        <AppSidebar />
+        <DesignSystemSidebar />
         <SidebarInset>
           {/* Floating toggles */}
           <SidebarTrigger

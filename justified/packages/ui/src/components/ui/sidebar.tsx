@@ -178,7 +178,7 @@ const Sidebar = React.forwardRef<
         "group peer hidden md:flex flex-col shrink-0 text-sidebar-foreground",
         "bg-sidebar overflow-hidden",
         "transition-[width] duration-200 ease-linear",
-        variant !== "floating" && variant !== "inset" && "",
+        variant !== "floating" && variant !== "inset" && "border-r border-sidebar-border",
         variant === "floating" && "rounded-lg border border-sidebar-border shadow m-2",
         isCollapsed && isOffcanvas && "w-0",
         isCollapsed && isIcon && "w-12",
@@ -259,12 +259,12 @@ const SidebarInput = React.forwardRef<React.ElementRef<typeof Input>, React.Comp
 SidebarInput.displayName = "SidebarInput";
 
 const SidebarHeader = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(({ className, ...props }, ref) => {
-  return <div ref={ref} data-sidebar="header" className={cn("flex flex-col gap-2 p-2", className)} {...props} />;
+  return <div ref={ref} data-sidebar="header" className={cn("flex flex-col gap-2 ", className)} {...props} />;
 });
 SidebarHeader.displayName = "SidebarHeader";
 
 const SidebarFooter = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(({ className, ...props }, ref) => {
-  return <div ref={ref} data-sidebar="footer" className={cn("flex flex-col gap-2 p-2", className)} {...props} />;
+  return <div ref={ref} data-sidebar="footer" className={cn("flex flex-col gap-2 ", className)} {...props} />;
 });
 SidebarFooter.displayName = "SidebarFooter";
 
@@ -491,22 +491,18 @@ const SidebarMenuSubButton = React.forwardRef<
   HTMLAnchorElement,
   React.ComponentProps<"a"> & {
     asChild?: boolean;
-    size?: "sm" | "md";
     isActive?: boolean;
   }
->(({ asChild = false, size = "md", isActive, className, ...props }, ref) => {
+>(({ asChild = false, isActive, className, ...props }, ref) => {
   const Comp = asChild ? Slot : "a";
   return (
     <Comp
       ref={ref}
       data-sidebar="menu-sub-button"
-      data-size={size}
       data-active={isActive}
       className={cn(
-        "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sidebar-foreground outline-none ring-sidebar-ring hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0 [&>svg]:text-sidebar-accent-foreground",
-        "data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground",
-        size === "sm" && "text-xs",
-        size === "md" && "text-sm",
+        "flex h-7 min-w-0 -translate-x-px items-center gap-2 overflow-hidden rounded-md px-2 text-sm font-medium text-sidebar-foreground/40 outline-none ring-sidebar-ring hover:bg-transparent hover:text-sidebar-foreground focus-visible:ring-2 active:bg-transparent active:text-sidebar-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+        "data-[active=true]:bg-transparent data-[active=true]:text-sidebar-foreground data-[active=true]:font-normal",
         "group-data-[collapsible=icon]:hidden",
         className,
       )}
