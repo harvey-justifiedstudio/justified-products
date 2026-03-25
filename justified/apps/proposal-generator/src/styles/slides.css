@@ -1,0 +1,69 @@
+/*
+ * slides.css — Slide design system tokens
+ *
+ * Separate from the product design system.
+ * Will be replaced when slides are redesigned with product styling.
+ */
+
+:root {
+  /* ─── Font ──────────────────────────────────────────── */
+  --slide-font: 'Helvetica Now Display', sans-serif;
+
+  /* ─── Colours ───────────────────────────────────────── */
+  --slide-ink:           #121212;
+  --slide-ink-muted:     #666666;
+  --slide-ink-secondary: #57616d;
+  --slide-border:        #E3E5E8;
+  --slide-surface:       #ffffff;
+
+  /* ─── Navigation bar ────────────────────────────────── */
+  --slide-nav-height:    48px;
+  --slide-nav-size:      12px;
+  --slide-nav-tracking:  -0.12px;
+
+  /* ─── Content divider ───────────────────────────────── */
+  --slide-divider-top:   254px;
+
+  /* ─── Context block (left column) ───────────────────── */
+  --slide-context-top:       273px;
+  --slide-context-padding-x: 17px;
+  --slide-context-width:     634px;
+  --slide-context-size:      24px;
+  --slide-context-tracking:  -0.24px;
+  --slide-context-leading:   1.2;
+
+  /* ─── Table of contents (right column) ──────────────── */
+  --slide-toc-size:       21px;
+  --slide-toc-tracking:   -0.105px;
+  --slide-toc-leading:    1.2;
+  --slide-toc-row-height: 72px;
+  --slide-toc-width:      777px;
+
+  /* ─── Statement text (large dark-slide heading) ─────── */
+  --slide-statement-size:     51px;
+  --slide-statement-tracking: -0.51px;
+  --slide-statement-leading:  1.04;
+
+  /* ─── Service column heading ─────────────────────────── */
+  --slide-service-size:     26px;
+  --slide-service-tracking: -0.26px;
+  --slide-service-leading:  1.14;
+
+  /* ─── Service tags ───────────────────────────────────── */
+  --slide-tag-font:     'Helvetica Now Text', sans-serif;
+  --slide-tag-size:     14px;
+  --slide-tag-leading:  18px;
+  --slide-tag-tracking: 0.14px;
+  --slide-tag-bg:       #2e2e2e;
+  --slide-tag-color:    #dcdcdc;
+
+  /* ─── Dark theme surface ─────────────────────────────── */
+  --slide-surface-dark:    #000000;
+  --slide-ink-dark:        #ffffff;
+  --slide-ink-muted-dark:  #a4a4a1;
+
+  /* ─── Layout ────────────────────────────────────────── */
+  --slide-width:          1920px;
+  --slide-col-split:      58.33%;
+  --slide-col-gutter:     7px;
+}

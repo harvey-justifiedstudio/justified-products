@@ -4,7 +4,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Badge, Button, Separator, cn } from "@justified/ui";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, X } from "lucide-react";
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -168,9 +168,10 @@ function ContextStep() {
 
 export interface GenerationFlowProps {
   onComplete: () => void;
+  onClose?: () => void;
 }
 
-export function GenerationFlow({ onComplete }: GenerationFlowProps) {
+export function GenerationFlow({ onComplete, onClose }: GenerationFlowProps) {
   const [stepIndex, setStepIndex] = useState(0);
   const [budget, setBudget] = useState<string | null>(null);
   const [tov, setTov] = useState<string | null>(null);
@@ -210,6 +211,11 @@ export function GenerationFlow({ onComplete }: GenerationFlowProps) {
     }
   }
 
+  function handleClose() {
+    setOverlayVisible(false);
+    setTimeout(() => onClose?.() ?? onComplete(), 220);
+  }
+
   return (
     <div
       className="fixed inset-0 bg-background z-50 flex flex-col"
@@ -218,6 +224,15 @@ export function GenerationFlow({ onComplete }: GenerationFlowProps) {
         transition: "opacity 200ms ease-out",
       }}
     >
+      {/* Close button */}
+      <button
+        onClick={handleClose}
+        className="absolute top-6 right-6 size-9 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+        aria-label="Close"
+      >
+        <X className="size-4" />
+      </button>
+
       {/* Step progress — active pill widens via transition-all */}
       <div className="flex items-center justify-center gap-2 pt-8">
         {STEPS.map((_, i) => (
